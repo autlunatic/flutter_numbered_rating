@@ -29,7 +29,6 @@ dev_dependencies:
     sdk: flutter
   numbered_rating:
     path: ../
-  flare_flutter: ^1.5.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

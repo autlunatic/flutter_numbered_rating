@@ -23,7 +23,7 @@ dev_dependencies:
 flutter:
   # To add assets to your package, add an assets section, like this:
   assets:
-    - flare/spinning.flr
+    - packages/numbered_rating/flare/spinning.flr
   #  - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see

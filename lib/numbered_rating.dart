@@ -156,7 +156,7 @@ class _NumberedRatingState extends State<NumberedRating> {
       width: _ratingWidth,
       height: _ratingWidth,
       child: Center(
-        child: FlareActor("flare/spinning.flr",
+        child: FlareActor("packages/numbered_rating/flare/spinning.flr",
             alignment: Alignment.center,
             fit: BoxFit.fitHeight,
             animation: animation),

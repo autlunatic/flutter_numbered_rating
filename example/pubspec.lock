@@ -44,7 +44,7 @@ packages:
     source: hosted
     version: "1.4.0"
   flare_flutter:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: flare_flutter
       url: "https://pub.dartlang.org"
