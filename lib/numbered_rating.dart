@@ -12,6 +12,7 @@ class NumberedRating extends StatefulWidget {
       {Key key,
       int minRating,
       int maxRating,
+      this.fixedItemWidth,
       this.color,
       this.borderColor,
       this.selectedColor,
@@ -26,6 +27,11 @@ class NumberedRating extends StatefulWidget {
 
   ///end number of rating
   final int maxRating;
+
+  /// set the width for one rating circle
+  ///
+  /// if this is not set, the widtch ranges from 70 to 100
+  final double fixedItemWidth;
 
   /// Color of the circle
   final Color color;
@@ -55,13 +61,17 @@ class _NumberedRatingState extends State<NumberedRating> {
 
   @override
   Widget build(BuildContext context) {
-    _ratingWidth = (MediaQuery.of(context).size.width - 20) /
-        (widget.maxRating - widget.minRating + 1);
-    if (_ratingWidth < 70.0) {
-      _ratingWidth = 70.0;
-    }
-    if (_ratingWidth > 100.0) {
-      _ratingWidth = 100.0;
+    if (widget.fixedItemWidth == null) {
+      _ratingWidth = (MediaQuery.of(context).size.width - 20) /
+          (widget.maxRating - widget.minRating + 1);
+      if (_ratingWidth < 70.0) {
+        _ratingWidth = 70.0;
+      }
+      if (_ratingWidth > 100.0) {
+        _ratingWidth = 100.0;
+      }
+    } else {
+      _ratingWidth = widget.fixedItemWidth;
     }
 
     final ratings = <Widget>[];

@@ -36,12 +36,18 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: <Widget>[
+          Text("default"),
           Center(
             child: NumberedRating(
                 // selectedBorderColor: Colors.blueAccent,
                 // selectedColor: Colors.grey,
                 ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Divider(),
+          ),
+          Text("only 5 and 6 dynamic size"),
           Center(
             child: NumberedRating(
               minRating: 5,
@@ -50,9 +56,33 @@ class _MyHomePageState extends State<MyHomePage> {
               // selectedColor: Colors.grey,
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Divider(),
+          ),
+          Text("10 ratings custom colors"),
           Center(
             child: NumberedRating(
               maxRating: 10,
+              color: Colors.grey,
+              borderColor: Colors.black,
+              selectedBorderColor: Colors.red,
+              selectedColor: Colors.orangeAccent,
+              // selectedBorderColor: Colors.blueAccent,
+              // selectedColor: Colors.grey,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Divider(),
+          ),
+          Text("8 to 10 fixed Size"),
+          Center(
+            child: NumberedRating(
+              minRating: 8,
+              maxRating: 10,
+              fixedItemWidth: 70,
+              onSelectRating: print,
               // selectedBorderColor: Colors.blueAccent,
               // selectedColor: Colors.grey,
             ),
