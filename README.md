@@ -1,6 +1,6 @@
 # numbered_rating
 
-A new Flutter package project.
+A Flutter package for an numbered rating choser.
 
 ## How to use
 
@@ -11,6 +11,8 @@ A new Flutter package project.
     )
 
 ## Screenshot
+
+<img src="https://github.com/autlunatic/flutter_numbered_rating/blob/master/screenshots/example.png?raw=true" width="240"/>
 
 ## Parameters
 
@@ -43,9 +45,3 @@ A new Flutter package project.
 
     /// this is called when a user taps on a number
     final ValueChanged<int> onSelectRating;
-
-## Getting Started
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.io/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
