@@ -1,6 +1,7 @@
 name: numbered_rating
-description: A Flutter Widget for displaying a Numbered_rating input
-version: 0.0.4
+description: A Flutter Widget for displaying a Numbered_rating input with animation.
+  this also can be used as a simple number input, where you want a fast input with only one click.
+version: 0.1.0
 author: autlunatic <autlunatic@gmail.com>
 homepage: https://github.com/autlunatic/flutter_numbered_rating
 
