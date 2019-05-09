@@ -57,7 +57,6 @@ class _NumberedRatingState extends State<NumberedRating> {
   Widget build(BuildContext context) {
     _ratingWidth = (MediaQuery.of(context).size.width - 20) /
         (widget.maxRating - widget.minRating + 1);
-    print(_ratingWidth);
     if (_ratingWidth < 70.0) {
       _ratingWidth = 70.0;
     }
@@ -139,7 +138,6 @@ class _NumberedRatingState extends State<NumberedRating> {
   }
 
   _select(int index) {
-    print("select $index");
     setState(() {
       _selectedValue = index;
       if (widget.onSelectRating != null) {
@@ -150,7 +148,6 @@ class _NumberedRatingState extends State<NumberedRating> {
 
   Widget _buildSpinningAnimation(Color borderColor) {
     final animation = "Spinning Circle";
-    print("buildingSpinning $animation");
     return Container(
       padding: EdgeInsets.all(4.0),
       width: _ratingWidth,
