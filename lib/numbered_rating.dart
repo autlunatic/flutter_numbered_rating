@@ -62,13 +62,14 @@ class _NumberedRatingState extends State<NumberedRating> {
   @override
   Widget build(BuildContext context) {
     if (widget.fixedItemWidth == null) {
-      _ratingWidth = (MediaQuery.of(context).size.width - 20) /
-          (widget.maxRating - widget.minRating + 1);
+      final screenWidth = (MediaQuery.of(context).size.width - 20);
+      final maxWidth = screenWidth / 5;
+      _ratingWidth = screenWidth / (widget.maxRating - widget.minRating + 1);
       if (_ratingWidth < 70.0) {
         _ratingWidth = 70.0;
       }
-      if (_ratingWidth > 100.0) {
-        _ratingWidth = 100.0;
+      if (_ratingWidth > maxWidth) {
+        _ratingWidth = maxWidth;
       }
     } else {
       _ratingWidth = widget.fixedItemWidth;
@@ -102,12 +103,23 @@ class _NumberedRatingState extends State<NumberedRating> {
         ? widget.selectedBorderColor ?? Theme.of(context).buttonColor
         : widget.borderColor ?? Theme.of(context).textTheme.body1.color;
     final borderWidth = isSelected ? 4.0 : 1.0;
+    final lowerCircle = hasSelectedColors
+        ? Container()
+        : isSelected
+            ? _buildSpinningAnimation(borderColor, "Spinning Circle")
+            // i draw a smaller idle Animation below the not selected Circle
+            // for smoother click feeling, because
+            // flare flashes when it is built with animation,
+            // maybe there is a better solution
+            : _buildSpinningAnimation(borderColor, "idle");
+    final upperCircle = !hasSelectedColors && isSelected
+        ? Container()
+        : _buildCircle(color, borderColor, borderWidth);
     return GestureDetector(
       child: Stack(
         children: <Widget>[
-          !hasSelectedColors && isSelected
-              ? _buildSpinningAnimation(borderColor)
-              : _buildCircle(color, borderColor, borderWidth),
+          lowerCircle,
+          upperCircle,
           _buildText(index),
         ],
       ),
@@ -156,10 +168,11 @@ class _NumberedRatingState extends State<NumberedRating> {
     });
   }
 
-  Widget _buildSpinningAnimation(Color borderColor) {
-    final animation = "Spinning Circle";
+  Widget _buildSpinningAnimation(Color borderColor, String animation) {
+    final edgeinsets = (animation == 'idle') ? 10.0 : 4.0;
+
     return Container(
-      padding: EdgeInsets.all(4.0),
+      padding: EdgeInsets.all(edgeinsets),
       width: _ratingWidth,
       height: _ratingWidth,
       child: Center(
