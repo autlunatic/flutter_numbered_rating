@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flare_flutter/flare_actor.dart';
+import 'package:selectable_circle/selectable_circle.dart';
 
 /// widget for displaying animated rating choose numbers
 ///
@@ -77,7 +77,17 @@ class _NumberedRatingState extends State<NumberedRating> {
 
     final ratings = <Widget>[];
     for (var i = widget.minRating; i <= widget.maxRating; i++) {
-      ratings.add(_buildRating(context, i));
+      ratings.add(new SelectableCircle(
+        isSelected: _selectedValue == i,
+        width: _ratingWidth,
+        color: widget.color,
+        borderColor: widget.borderColor,
+        selectedColor: widget.selectedColor,
+        selectedBorderColor: widget.selectedBorderColor,
+        key: widget.key,
+        onSelected: () => _select(i),
+        child: _buildText(i.toString()),
+      ));
     }
     final container = ratings.length < 5
         ? Row(
@@ -92,73 +102,6 @@ class _NumberedRatingState extends State<NumberedRating> {
         child: container);
   }
 
-  Widget _buildRating(BuildContext context, int index) {
-    final isSelected = _selectedValue == index;
-    final hasSelectedColors =
-        widget.selectedBorderColor != null || widget.selectedColor != null;
-    final color = isSelected
-        ? widget.selectedColor ?? Theme.of(context).backgroundColor
-        : widget.color ?? Theme.of(context).scaffoldBackgroundColor;
-    final borderColor = isSelected
-        ? widget.selectedBorderColor ?? Theme.of(context).buttonColor
-        : widget.borderColor ?? Theme.of(context).textTheme.body1.color;
-    final borderWidth = isSelected ? 4.0 : 1.0;
-    final lowerCircle = hasSelectedColors
-        ? Container()
-        : isSelected
-            ? _buildSpinningAnimation(borderColor, "Spinning Circle")
-            // i draw a smaller idle Animation below the not selected Circle
-            // for smoother click feeling, because
-            // flare flashes when it is built with animation,
-            // maybe there is a better solution
-            : _buildSpinningAnimation(borderColor, "idle");
-    final upperCircle = !hasSelectedColors && isSelected
-        ? Container()
-        : _buildCircle(color, borderColor, borderWidth);
-    return GestureDetector(
-      child: Stack(
-        children: <Widget>[
-          lowerCircle,
-          upperCircle,
-          _buildText(index),
-        ],
-      ),
-      onTap: () => _select(index),
-    );
-  }
-
-  Center _buildText(int index) {
-    return Center(
-      child: Container(
-        height: _ratingWidth,
-        // color: Colors.brown,
-        width: _ratingWidth,
-        child: Center(
-          child: Text(
-            index.toString(),
-            style: TextStyle(fontSize: 20.0),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Container _buildCircle(Color color, Color borderColor, double borderWidth) {
-    return Container(
-      padding: EdgeInsets.all(8.0),
-      width: _ratingWidth,
-      height: _ratingWidth,
-      child: Center(
-        child: Container(
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: color,
-              border: Border.all(color: borderColor, width: borderWidth)),
-        ),
-      ),
-    );
-  }
-
   _select(int index) {
     setState(() {
       _selectedValue = index;
@@ -168,18 +111,17 @@ class _NumberedRatingState extends State<NumberedRating> {
     });
   }
 
-  Widget _buildSpinningAnimation(Color borderColor, String animation) {
-    final edgeinsets = (animation == 'idle') ? 10.0 : 4.0;
-
-    return Container(
-      padding: EdgeInsets.all(edgeinsets),
-      width: _ratingWidth,
-      height: _ratingWidth,
-      child: Center(
-        child: FlareActor("packages/numbered_rating/flare/spinning.flr",
-            alignment: Alignment.center,
-            fit: BoxFit.fitHeight,
-            animation: animation),
+  Center _buildText(String text) {
+    return Center(
+      child: Container(
+        height: _ratingWidth,
+        width: _ratingWidth,
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(fontSize: 20.0),
+          ),
+        ),
       ),
     );
   }

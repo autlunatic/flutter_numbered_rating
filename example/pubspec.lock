@@ -80,7 +80,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.1.1"
+    version: "0.1.2"
   path:
     dependency: transitive
     description:
@@ -102,6 +102,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
+  selectable_circle:
+    dependency: transitive
+    description:
+      name: selectable_circle
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.3"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -164,4 +171,4 @@ packages:
     source: hosted
     version: "2.0.8"
 sdks:
-  dart: ">=2.2.0 <3.0.0"
+  dart: ">=2.2.2 <3.0.0"

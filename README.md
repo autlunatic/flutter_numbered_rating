@@ -13,6 +13,7 @@ A Flutter package for an numbered rating choser.
 ## Screenshot
 
 <img src="https://github.com/autlunatic/flutter_numbered_rating/blob/master/screenshots/example.png?raw=true" width="240"/>
+<img src="https://github.com/autlunatic/flutter_numbered_rating/blob/master/screenshots/screen.gif?raw=true" width="240"/>
 
 ## Parameters
 
