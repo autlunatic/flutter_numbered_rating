@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:selectable_circle/selectable_circle.dart';
 
+export 'package:selectable_circle/selectable_circle.dart';
+
 /// widget for displaying animated rating choose numbers
 ///
 /// When [selectedColor] or [selectedBorderColor] is set, the animation is disabled
@@ -8,17 +10,18 @@ import 'package:selectable_circle/selectable_circle.dart';
 /// it will build a [Row] with spaceEvenly alignment
 /// otherwise it will be an vertical scrolling Listview
 class NumberedRating extends StatefulWidget {
-  NumberedRating(
-      {Key key,
-      int minRating,
-      int maxRating,
-      this.fixedItemWidth,
-      this.color,
-      this.borderColor,
-      this.selectedColor,
-      this.selectedBorderColor,
-      this.onSelectRating})
-      : minRating = minRating ?? 1,
+  NumberedRating({
+    Key key,
+    int minRating,
+    int maxRating,
+    this.onSelectRating,
+    this.fixedItemWidth,
+    this.color,
+    this.borderColor,
+    this.selectedColor,
+    this.selectedBorderColor,
+    this.selectMode,
+  })  : minRating = minRating ?? 1,
         maxRating = maxRating ?? 5,
         super(key: key);
 
@@ -52,6 +55,14 @@ class NumberedRating extends StatefulWidget {
   /// this is called when a user taps on a number
   final ValueChanged<int> onSelectRating;
 
+  /// changes the selectmode
+  ///
+  /// Possible Values:
+  /// simple: no animation, only selectedColors are used
+  /// animatedCircle: Animation is used (default)
+  /// check: Check Icon Animation is used
+  final SelectMode selectMode;
+
   _NumberedRatingState createState() => _NumberedRatingState();
 }
 
@@ -84,8 +95,9 @@ class _NumberedRatingState extends State<NumberedRating> {
         borderColor: widget.borderColor,
         selectedColor: widget.selectedColor,
         selectedBorderColor: widget.selectedBorderColor,
+        selectMode: widget.selectMode,
         key: widget.key,
-        onSelected: () => _select(i),
+        onTap: () => _select(i),
         child: _buildText(i.toString()),
       ));
     }

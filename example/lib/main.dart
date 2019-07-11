@@ -47,11 +47,16 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.all(8.0),
             child: Divider(),
           ),
-          Text("only 5 and 6 dynamic size"),
+          Text("only 5 and 6 dynamic size SelectMode.check"),
           Center(
             child: NumberedRating(
               minRating: 5,
               maxRating: 6,
+              color: Colors.blueAccent,
+              selectedBorderColor: Colors.black,
+              selectedColor: Colors.yellowAccent,
+              fixedItemWidth: 80.0,
+              selectMode: SelectMode.check,
               // selectedBorderColor: Colors.blueAccent,
               // selectedColor: Colors.grey,
             ),
@@ -65,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: NumberedRating(
               maxRating: 10,
               color: Colors.grey,
-              borderColor: Colors.black,
+              borderColor: Colors.yellow,
               selectedBorderColor: Colors.red,
               selectedColor: Colors.orangeAccent,
               // selectedBorderColor: Colors.blueAccent,

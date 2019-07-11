@@ -35,14 +35,22 @@ A Flutter package for an numbered rating choser.
     final Color borderColor;
 
     /// Color of the circle when selected
-    ///
-    /// this option also disables the animation!
     final Color selectedColor;
 
     /// Color of the border when selected
-    ///
-    /// this option also disables the animation!
     final Color selectedBorderColor;
 
     /// this is called when a user taps on a number
     final ValueChanged<int> onSelectRating;
+
+    /// changes the select animation
+    ///
+    /// Possible Values:
+    /// simple: no animation, only selectedColor is used
+    /// animatedCircle: Animation is used (default)
+    /// check: Check Icon Animation is used
+    final SelectMode selectMode;
+
+## Contribution
+
+Contributions and critics are welcome
