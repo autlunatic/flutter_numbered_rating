@@ -69,6 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Center(
             child: NumberedRating(
               maxRating: 10,
+              initialValue: 5,
               color: Colors.grey,
               borderColor: Colors.yellow,
               selectedBorderColor: Colors.red,

@@ -21,6 +21,7 @@ class NumberedRating extends StatefulWidget {
     this.selectedColor,
     this.selectedBorderColor,
     this.selectMode,
+    this.initialValue,
   })  : minRating = minRating ?? 1,
         maxRating = maxRating ?? 5,
         super(key: key);
@@ -63,12 +64,21 @@ class NumberedRating extends StatefulWidget {
   /// check: Check Icon Animation is used
   final SelectMode selectMode;
 
+  /// the initialvalue is set when the widget is built the first time
+  final int initialValue;
+
   _NumberedRatingState createState() => _NumberedRatingState();
 }
 
 class _NumberedRatingState extends State<NumberedRating> {
   int _selectedValue = 0;
   double _ratingWidth = 70.0;
+
+  @override
+  void initState() {
+    _selectedValue = widget.initialValue;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
